@@ -1,0 +1,18 @@
+
+
+%person% Tell me the name of someone you know.
+%animal% Name an animal.
+%compLanguage% What is your favorite programming language?
+%animal2% Name a small animal.
+
+%
+**** ALIENS IN THE CLASSROOM!!! *****
+****** a madlib story ***************
+
+It started out an uneventful %compLanguage% class that evening.
+But then %person% pulled a live %animal% out of a bag and 
+began to eat. We tried to stop %person% but it was too late
+for the %animal%.
+
+"TAKE ME TO YOUR LEADER," %person% said pulling out a %animal2%
+and pointing it like a weapon.

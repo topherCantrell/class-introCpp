@@ -1,0 +1,88 @@
+
+
+%person% Tell me the name of someone you know.
+%animal% Name an animal.
+%compLanguage% What is your favorite programming language?
+%animal2% Name a small animal.
+
+%
+**** ALIENS IN THE CLASSROOM!!! *****
+****** a madlib story ***************
+
+It started out an uneventful %compLanguage% class that evening.
+But then %person% pulled a live %animal% out of a bag and 
+began to eat. We tried to stop %person% but it was too late
+for the %animal%.
+
+"TAKE ME TO YOUR LEADER," %person% said pulling out a %animal2%
+and pointing it like a weapon.
+
+
+
+
+#include <iostream>
+using namespace std;
+
+#include <fstream>
+#include <string>
+
+string keys[100];
+string values[100];
+int numberOfKeys = 0;
+
+string lookupKeyValue(string key) {
+	for(int x=0;x<numberOfKeys;++x) {
+		if(keys[x] == key) {
+			return values[x];
+		}
+	}
+	return "??";
+}
+
+int main() {
+
+	fstream storyFile;
+	storyFile.open("c:\\cpp_7_2012\\Day4\\AliensInClass.txt", fstream::in);
+
+	string s;
+
+	while(true) {
+		getline(storyFile,s);
+		if(s=="%") break;
+		if(s.size()>0 && s[0]=='%') {
+			int secondPercent = s.find('%',1);
+			string key = s.substr(0,secondPercent+1);
+			string prompt = s.substr(secondPercent+2);
+			cout << prompt << " :";
+			string value;
+			cin >> value;
+			keys[numberOfKeys] = key;
+			values[numberOfKeys] = value;
+			++numberOfKeys;
+		}
+	}
+
+	cout << endl << endl << endl;
+		
+	while(!storyFile.eof()) {
+
+		getline(storyFile,s);
+
+		while(true) {
+			int per = s.find('%');
+			if(per<0) break;
+			int per2 = s.find('%',per+1);
+			int keyLength = per2-per;
+			string first = s.substr(0,per);
+			string key = s.substr(per,keyLength+1);
+			string second = s.substr(per2+1);
+			s = first+lookupKeyValue(key)+second;
+		}
+
+		cout << s << endl;
+
+	}
+	
+	system("pause");
+
+}
